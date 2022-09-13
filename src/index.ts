@@ -2,14 +2,13 @@ import fs from 'fs';
 import fspromisse from 'fs/promises';
 import path from 'path';
 import os from 'os';
-// Rename a file
-// Sync Version
+// Rename a file with call back pattern
 fs.rename('files/rename.me', 'files/okay.me', (err) => {
   if (err) throw err;
   console.log('renamed complete');
 });
 
-// await pattern
+// Read a file and write back to a file using the await async pattern
 async function example() {
     const fileName = 'files/fileData.txt';
     try {
@@ -28,8 +27,8 @@ async function example() {
 
   // Path
 console.log(path.basename('/test/something')); // something
-path.basename('/test/something.txt'); // something.txt
-path.basename('/test/something.txt', '.txt'); // something
+console.log(path.basename('/test/something.txt')); // something.txt
+console.log((path.basename('/test/something.txt', '.txt'))); // something
 
 
 path.dirname('/test/something'); // /test
@@ -40,17 +39,3 @@ path.join('/test', 'something'); // /test/something
 console.log(os.cpus());
 
 console.log(process.cwd());
-
-
-// Node as a web server
-import http from 'http';
-const port = process.env.PORT || 3000
-
-const server = http.createServer((req, res) => {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Hello World');
-    });
-
-server.listen(port, () => {
-    console.log(`Server running at port ${port}`);
-});
